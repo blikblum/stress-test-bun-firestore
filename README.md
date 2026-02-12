@@ -201,7 +201,57 @@ Documents | Node.js (ms) | Bun (ms)     | Difference  | Winner
 - Tests are run against the Firestore emulator, not production Firestore
 - Each test scenario clears the collection before and after execution
 - Results may vary based on system performance and load
-- The emulator must be running before executing tests
+- The emulator must be running before executing tests with the full mode
+- Demo mode provides instant results without requiring emulator setup
+- Results are saved as JSON files in the `results/` directory
+
+## Example Results JSON Structure
+
+```json
+{
+  "runtime": "Node.js",
+  "version": "v24.13.0",
+  "timestamp": "2026-02-12T12:47:32.545Z",
+  "tests": [
+    {
+      "documentCount": 100,
+      "addDuration": 1.460634,
+      "readDuration": 1.217177,
+      "addRate": 68463.42,
+      "readRate": 82157.32
+    },
+    {
+      "documentCount": 500,
+      "addDuration": 5.703153,
+      "readDuration": 5.061209,
+      "addRate": 87670.80,
+      "readRate": 98790.62
+    }
+  ]
+}
+```
+
+## Quick Start Example
+
+```bash
+# Install dependencies
+npm install
+
+# Run demo with Node.js
+npm run demo:node
+
+# Run demo with Bun
+npm run demo:bun
+
+# Compare results
+npm run compare
+```
+
+You should see output like:
+```
+Bun is 4.7% faster at adding documents on average
+Bun is 3.6% faster at reading documents on average
+```
 
 ## License
 
