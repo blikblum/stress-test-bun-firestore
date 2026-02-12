@@ -6,7 +6,9 @@
   "scripts": {
     "test:node": "node src/run-tests.js",
     "test:bun": "bun src/run-tests.js",
-    "emulator": "firebase emulators:start --only firestore",
+    "demo:node": "node src/demo.js",
+    "demo:bun": "bun src/demo.js",
+    "emulator": "npx firebase emulators:start --only firestore",
     "compare": "node src/compare.js"
   },
   "repository": {
@@ -23,5 +25,8 @@
   "homepage": "https://github.com/blikblum/stress-test-bun-firestore#readme",
   "dependencies": {
     "firebase-admin": "^13.6.1"
+  },
+  "devDependencies": {
+    "firebase-tools": "^13.0.0"
   }
 }

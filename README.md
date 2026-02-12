@@ -10,15 +10,22 @@ A performance comparison project to benchmark Firestore operations (firebase-adm
 - 📈 Measures both write (add) and read operations
 - 🎯 Uses Firebase Firestore emulator for consistent testing
 - 📋 Generates detailed performance reports
+- 🎪 Includes demo mode for quick testing without emulator
 
 ## Prerequisites
 
 - Node.js (v18 or higher recommended)
 - Bun (latest version)
-- Firebase CLI for running the emulator
+- Firebase CLI and Java 21+ (for running the actual emulator)
 
-### Installing Firebase CLI
+### Installing Prerequisites
 
+**Install Bun:**
+```bash
+curl -fsSL https://bun.sh/install | bash
+```
+
+**Install Firebase CLI:**
 ```bash
 npm install -g firebase-tools
 ```
@@ -31,7 +38,37 @@ npm install
 
 ## Running the Tests
 
-### 1. Start the Firestore Emulator
+You can run the tests in two modes:
+
+### Quick Demo Mode (No Emulator Required)
+
+The demo mode provides a quick way to see the performance comparison framework in action without setting up the Firestore emulator. It simulates document operations with artificial data.
+
+#### 1. Run Demo with Node.js
+
+```bash
+npm run demo:node
+```
+
+#### 2. Run Demo with Bun
+
+```bash
+npm run demo:bun
+```
+
+#### 3. Compare Demo Results
+
+```bash
+npm run compare
+```
+
+This will display a detailed comparison showing performance differences between Node.js and Bun.
+
+### Full Mode with Firestore Emulator
+
+For actual Firestore testing with the emulator:
+
+#### 1. Start the Firestore Emulator
 
 In a separate terminal, start the Firestore emulator:
 
@@ -41,7 +78,9 @@ npm run emulator
 
 The emulator will start on `localhost:8080`. Keep this running while you execute the tests.
 
-### 2. Run Tests with Node.js
+**Note:** The emulator requires Java 21 or higher. If you have an older version, you may need to upgrade Java or use the demo mode.
+
+#### 2. Run Tests with Node.js
 
 ```bash
 npm run test:node
@@ -49,7 +88,7 @@ npm run test:node
 
 This will run all performance tests using Node.js and save results to `results/node.js-results.json`.
 
-### 3. Run Tests with Bun
+#### 3. Run Tests with Bun
 
 ```bash
 npm run test:bun
@@ -57,7 +96,7 @@ npm run test:bun
 
 This will run all performance tests using Bun and save results to `results/bun-results.json`.
 
-### 4. Compare Results
+#### 4. Compare Results
 
 After running tests with both runtimes:
 
@@ -69,6 +108,17 @@ This will display a detailed comparison showing:
 - Add document performance for each scenario
 - Read document performance for each scenario
 - Overall averages and winner determination
+
+## Available Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run demo:node` | Run demo performance test with Node.js (no emulator) |
+| `npm run demo:bun` | Run demo performance test with Bun (no emulator) |
+| `npm run test:node` | Run full Firestore tests with Node.js (requires emulator) |
+| `npm run test:bun` | Run full Firestore tests with Bun (requires emulator) |
+| `npm run emulator` | Start Firebase Firestore emulator |
+| `npm run compare` | Compare results from Node.js and Bun tests |
 
 ## Test Scenarios
 
@@ -88,7 +138,8 @@ The project tests the following scenarios:
 ├── src/
 │   ├── firestore-init.js  # Firestore initialization with emulator config
 │   ├── test-utils.js      # Performance testing utilities
-│   ├── run-tests.js       # Main test runner
+│   ├── run-tests.js       # Main test runner (requires emulator)
+│   ├── demo.js            # Demo test runner (no emulator needed)
 │   └── compare.js         # Results comparison script
 ├── results/               # Generated test results (gitignored)
 ├── firebase.json          # Firebase emulator configuration
