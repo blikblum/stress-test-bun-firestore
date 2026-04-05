@@ -1,0 +1,32 @@
+{
+  "name": "stress-test-bun-firestore",
+  "version": "1.0.0",
+  "description": "Performance comparison of Firestore between Node.js and Bun",
+  "main": "index.js",
+  "scripts": {
+    "test:node": "node src/run-tests.js",
+    "test:bun": "bun src/run-tests.js",
+    "demo:node": "node src/demo.js",
+    "demo:bun": "bun src/demo.js",
+    "emulator": "npx firebase emulators:start --only firestore",
+    "compare": "node src/compare.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blikblum/stress-test-bun-firestore.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/blikblum/stress-test-bun-firestore/issues"
+  },
+  "homepage": "https://github.com/blikblum/stress-test-bun-firestore#readme",
+  "dependencies": {
+    "firebase-admin": "^13.6.1"
+  },
+  "devDependencies": {
+    "firebase-tools": "^13.0.0"
+  }
+}
